@@ -5,6 +5,7 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import hu.necrocore.photon.client.PhotonClient;
 import hu.necrocore.photon.config.PhotonConfig;
+import hu.necrocore.photon.service.PhotonService;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -23,5 +24,11 @@ public class PhotonAutoConfiguration {
                 .encoder(new JacksonEncoder())
                 .decoder(new JacksonDecoder())
                 .target(PhotonClient.class, properties.getBaseUrl());
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public PhotonService photonService(PhotonClient photonClient) {
+        return new PhotonService(photonClient);
     }
 }
