@@ -71,7 +71,7 @@ public class PhotonService {
      * @throws IllegalArgumentException if the query parameter in the request is null or blank
      */
     private void validateSearch(PhotonSearchRequest request) throws IllegalArgumentException {
-        if (request.getQuery() == null || request.getQuery().isBlank()) {
+        if (request.getQuery() == null) {
             throw new IllegalArgumentException("Photon search query must not be empty");
         }
     }
