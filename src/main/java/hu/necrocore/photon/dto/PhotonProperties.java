@@ -30,6 +30,11 @@ public class PhotonProperties {
 
     private String country;
 
+    /**
+     * street, house, city, district, county, other, ...
+     */
+    private String type;
+
     @JsonProperty("countrycode")
     private String countryCode;
 
