@@ -24,18 +24,52 @@ Use Photon client in Spring Boot application.
 ## Usage
 
 ```java
+import hu.necrocore.photon.service.PhotonService;
+import hu.necrocore.photon.domain.PhotonSearchRequest;
+import hu.necrocore.photon.domain.PhotonReverseRequest;
+import hu.necrocore.photon.domain.GeoPoint;
+import hu.necrocore.photon.dto.PhotonResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Autowired
-private PhotonClient photonClient;
+@Component
+public class GeocodingExample {
 
+  @Autowired
+  private PhotonService photonService;
 
-public void search() {
-    PhotonResponse response = photonClient.search("Budapest", "en", 1);
+  public void forwardSearch() {
+    Map<String, Object> extraParams = new HashMap<>();
+    extraParams.put("location_bias_scale", 0.5);
+      
+    PhotonSearchRequest request = PhotonSearchRequest.builder("Budapest")
+            // all fields are optional
+            .language("en")
+            .limit(1)
+            .locationBias(new GeoPoint(47.497913, 19.040236))
+            .osmTags(Set.of("building:house"))
+            .extraParams(extraParams)
+            .boundingBox(new BoundingBox(16.18, 48.11, 16.55, 48.32))
+            .build();
+
+    PhotonResponse response = photonService.search(request);
+    System.out.println(response);
+  }
+
+  public void reverseGeocode() {
+      PhotonReverseRequest.builder(new GeoPoint(47.497913, 19.040236))
+              // all fields are optional
+              .language("en")
+              .limit(1)
+              .radius(20)
+              .distanceSort(true)
+              .build();
+
+    PhotonResponse response = photonService.reverse(request);
+    System.out.println(response);
+  }
 }
 
-public void reverseGeocode() {
-    PhotonResponse response = photonClient.reverse(47.497913, 19.040236);
-}
 ```
 
 ### Configuration
