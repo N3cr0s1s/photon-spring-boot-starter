@@ -28,7 +28,7 @@ class PhotonLibraryTest {
         assertNotNull(photonClient, "Photon client not created");
 
         log.info("Start searching...");
-        PhotonResponse response = photonClient.search("Budapest", "en", 1);
+        PhotonResponse response = photonClient.search("Budapest", "en", null, null, 1, null, null,null);
 
         assertNotNull(response);
         assertFalse(response.getFeatures().isEmpty());
@@ -40,7 +40,7 @@ class PhotonLibraryTest {
     void testReverseGeocoding() {
         assertNotNull(photonClient, "Photon client not created");
 
-        PhotonResponse response = photonClient.reverse(47.497913, 19.040236);
+        PhotonResponse response = photonClient.reverse(47.497913, 19.040236, null, null, null, null);
         assertNotNull(response);
         assertFalse(response.getFeatures().isEmpty());
     }
@@ -49,7 +49,7 @@ class PhotonLibraryTest {
     void testRichRealWorldLocation() {
         log.info("Searching for a rich location (Brandenburg Gate)...");
         // "Pariser Platz" in Berlin usually returns full address details
-        PhotonResponse response = photonClient.search("Pariser Platz 1 Berlin", "en", 1);
+        PhotonResponse response = photonClient.search("Pariser Platz 1 Berlin", "en", null, null, 1, null, null, null);
 
         assertNotNull(response);
         assertFalse(response.getFeatures().isEmpty(), "Should find at least one result");
