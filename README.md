@@ -77,7 +77,7 @@ Step 2. Add the dependency
 <dependency>
     <groupId>com.github.N3cr0s1s</groupId>
     <artifactId>photon-spring-boot-starter</artifactId>
-    <version>v0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
@@ -99,6 +99,6 @@ Step 2. Add the dependency
 
 ```
 dependencies {
-        implementation 'com.github.N3cr0s1s:photon-spring-boot-starter:v0.0.1'
+        implementation 'com.github.N3cr0s1s:photon-spring-boot-starter:0.0.2'
 }
 ```
