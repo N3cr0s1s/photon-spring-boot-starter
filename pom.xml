@@ -12,7 +12,7 @@
 
     <groupId>com.github.n3cr0s1s</groupId>
     <artifactId>photon-spring-boot-starter</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>photon-spring-boot-starter</name>
     <description>Adds Photon API client functionality to Spring Boot applications automatically</description>
 
